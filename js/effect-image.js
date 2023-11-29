@@ -87,6 +87,7 @@ const effectsElement = form.querySelector('.effects');
 const sliderContainerElement = form.querySelector('.img-upload__effect-level');
 const sliderElement = form.querySelector('.effect-level__slider');
 const effectLevelElement = form.querySelector('.effect-level__value');
+const effectNoneElement = document.querySelector('#effect-none');
 
 
 noUiSlider.create(sliderElement, {
@@ -127,7 +128,7 @@ const onEffectChange = (evt) => {
 effectsElement.addEventListener('change', onEffectChange);
 
 const resetEffects = () => {
-  document.querySelector('#effect-none').checked = true;
+  effectNoneElement.checked = true;
   hideSlider();
 };
 
