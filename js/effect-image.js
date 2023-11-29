@@ -99,6 +99,10 @@ noUiSlider.create(sliderElement, {
   connect: 'lower'
 });
 
+const hideSlider = () => {
+  imageElement.style.filter = 'none';
+  sliderContainerElement.classList.add('hidden');
+};
 
 sliderElement.noUiSlider.on('update', () => {
   const filterValue = sliderElement.noUiSlider.get(true);
@@ -111,8 +115,7 @@ sliderElement.noUiSlider.on('update', () => {
 
     imageElement.style.filter = `${style}(${value}${unit})`;
   } else {
-    imageElement.style.filter = 'none';
-    sliderContainerElement.classList.add('hidden');
+    hideSlider();
   }
 });
 
@@ -124,9 +127,8 @@ const onEffectChange = (evt) => {
 effectsElement.addEventListener('change', onEffectChange);
 
 const resetEffects = () => {
-  document.querySelector('#effect-none').check = true;
-  imageElement.style.filter = 'none';
-  sliderContainerElement.classList.add('hidden');
+  document.querySelector('#effect-none').checked = true;
+  hideSlider();
 };
 
 export {resetEffects};
