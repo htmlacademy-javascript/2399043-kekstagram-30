@@ -75,27 +75,21 @@ const renderComments = () => {
 
 const onCommentsLoaderClick = () => renderComments();
 
-const renderBigPicture = ({ url, description, likes }) => {
-  image.src = url;
-  image.alt = description;
-  likesCount.textContent = likes;
-  caption.textContent = description;
-};
+const renderBigPicture = (photoData) => {
+  image.src = photoData.url;
+  image.alt = photoData.description;
+  likesCount.textContent = photoData.likes;
+  caption.textContent = photoData.description;
+  comments = photoData.comments;
 
-const onThumbnailClick = (thumbnail, photoData) => {
-  thumbnail.addEventListener('click', () => {
-    renderBigPicture(photoData);
+  if (comments.length > 0) {
+    renderComments ();
+  }
 
-    comments = photoData.comments;
-    if (comments.length > 0) {
-      renderComments();
-    }
-
-    openBigPicture();
-  });
+  openBigPicture ();
 };
 
 closeBigPictureButton.addEventListener('click', onCloseBigPicture);
 commentsLoader.addEventListener('click', onCommentsLoaderClick);
 
-export {onThumbnailClick, onCloseBigPicture};
+export { renderBigPicture, onCloseBigPicture };
